@@ -31,7 +31,7 @@ defmodule FoodChain do
       List.flatten([
         "I know an old lady who swallowed a #{animal_name}.",
         List.first(@animals_and_sentences[animal_name]),
-        make_iterative_sentence(Enum.slice(@animals_and_sentences, 0, current_animal_index+1)),
+        swallowed_list(Enum.slice(@animals_and_sentences, 0, current_animal_index+1)),
         first_animal_first_sentence
         ]
       ),
@@ -43,16 +43,16 @@ defmodule FoodChain do
     "She swallowed the #{first_animal_name} to catch the #{second_animal_name}#{second_animal_second_sentence}"
   end
   
-  def make_iterative_sentence [a] do
+  def swallowed_list [a] do
     []
   end
 
-  def make_iterative_sentence keyword_list do
+  def swallowed_list keyword_list do
     last_index = Enum.count(keyword_list) - 1
     previous_to_last_index = last_index - 1
     {:ok, {last_animal_name, _}} = Enum.fetch(@animals_and_sentences, last_index)
     {:ok, previous_to_last_animal} = Enum.fetch(@animals_and_sentences, previous_to_last_index)
-    [swallowed_sentence(last_animal_name, previous_to_last_animal), make_iterative_sentence(Enum.slice(keyword_list, 0, last_index))]
+    [swallowed_sentence(last_animal_name, previous_to_last_animal), swallowed_list(Enum.slice(keyword_list, 0, last_index))]
   end
 end
 
