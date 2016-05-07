@@ -1,7 +1,7 @@
 defmodule FoodChain do
   @animals_and_sentences [
     { :fly, ["I don't know why she swallowed the fly. Perhaps she'll die.", "."] },
-    { :spider, ["It wriggled and jiggled and tickled inside her.", "that wriggled and jiggled and tickled inside her."] },
+    { :spider, ["It wriggled and jiggled and tickled inside her.", " that wriggled and jiggled and tickled inside her."] },
     { :bird, ["How absurd to swallow a bird!", "."] },
     { :cat, ["Imagine that, to swallow a cat!", "."] },
     { :dog, ["What a hog, to swallow a dog!", "."] },
@@ -15,11 +15,14 @@ defmodule FoodChain do
   end
 
   def rock_n_roll animal_name do
-    List.
+    current_animal_index = Enum.find_index @animals_and_sentences, fn({x, _}) -> x == animal_name end
+    previous_animal_index = current_animal_index - 1
+    {:ok, {previous_animal, [previous_animal_first_sentence, previous_animal_second_sentence]}} = Enum.fetch(@animals_and_sentences, previous_animal_index)
     Enum.join([
       "I know an old lady who swallowed a #{animal_name}.",
       List.first(@animals_and_sentences[animal_name]),
-      "She swallowed the #{animal_name} to catch the {previous_animal}{current_animal_second_sentence}"
+      "She swallowed the #{animal_name} to catch the #{previous_animal}#{previous_animal_second_sentence}",
+      previous_animal_first_sentence
     ], "\n") <> "\n"
   end
 end
