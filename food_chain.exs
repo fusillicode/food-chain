@@ -1,30 +1,39 @@
 defmodule FoodChain do
-  @animals 
+  @animals_and_sentences [
+    { :fly, ["I don't know why she swallowed the fly. Perhaps she'll die.", "."] },
+    { :spider, ["It wriggled and jiggled and tickled inside her.", "that wriggled and jiggled and tickled inside her."] },
+    { :bird, ["How absurd to swallow a bird!", "."] },
+    { :cat, ["Imagine that, to swallow a cat!", "."] },
+    { :dog, ["What a hog, to swallow a dog!", "."] },
+    { :goat, ["Just opened her throat and swallowed a goat!", "."] },
+    { :cow, ["I don't know how she swallowed a cow!", "."] },
+    { :horse, ["She's dead, of course!", "."] }
+  ]
 
-  def rock_n_roll do
+  def rock_n_roll :fly do
+    Enum.join(["I know an old lady who swallowed a fly.", List.first(@animals_and_sentences[:fly])], "\n") <> "\n"
+  end
+
+  def rock_n_roll animal_name do
+    List.
+    Enum.join([
+      "I know an old lady who swallowed a #{animal_name}.",
+      List.first(@animals_and_sentences[animal_name]),
+      "She swallowed the #{animal_name} to catch the {previous_animal}{current_animal_second_sentence}"
+    ], "\n") <> "\n"
   end
 end
 
-1 iteration
-I know an old lady who swallowed a {animal}
-{current_animal_first_sentence}
-
-other iterations
-I know an old lady who swallowed a {animal}
-{current_animal_first_sentence}
-She swallowed the {current_animal} to catch the {previous_animal}{current_animal_second_sentence}
-...
-{first_animal_first_sentence}
-
-
-fly # I don't know why she swallowed the fly. Perhaps she'll die. # '.'
-spider # It wriggled and jiggled and tickled inside her. # that wriggled and jiggled and tickled inside her.
-bird # How absurd to swallow a bird! # '.'
-cat # Imagine that, to swallow a cat! # '.'
-dog # What a hog, to swallow a dog! # '.'
-goat # Just opened her throat and swallowed a goat! # '.'
-cow # I don't know how she swallowed a cow! # '.'
-horse # She's dead, of course! # '.'
+# 1 iteration
+# I know an old lady who swallowed a {animal}
+# {current_animal_first_sentence}
+#
+# other iterations
+# I know an old lady who swallowed a {animal}
+# {current_animal_first_sentence}
+# She swallowed the {current_animal} to catch the {previous_animal}{current_animal_second_sentence}
+# ...
+# {first_animal_first_sentence}
 
 # I know an old lady who swallowed a fly.
 # I don't know why she swallowed the fly. Perhaps she'll die.
