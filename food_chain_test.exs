@@ -8,15 +8,15 @@ ExUnit.configure exclude: :pending, trace: true
 defmodule FoodChainTest do
   use ExUnit.Case
 
-  test "rock_n_roll with :fly" do
-    assert FoodChain.rock_n_roll(:fly) == """
+  test "song_paragraph with :fly" do
+    assert FoodChain.song_paragraph(:fly) == """
     I know an old lady who swallowed a fly.
     I don't know why she swallowed the fly. Perhaps she'll die.
     """
   end
 
-  test "rock_n_roll with :spider" do
-    assert FoodChain.rock_n_roll(:spider) == """
+  test "song_paragraph with :spider" do
+    assert FoodChain.song_paragraph(:spider) == """
     I know an old lady who swallowed a spider.
     It wriggled and jiggled and tickled inside her.
     She swallowed the spider to catch the fly.
@@ -24,8 +24,8 @@ defmodule FoodChainTest do
     """
   end
 
-  test "rock_n_roll with :bird" do
-    assert FoodChain.rock_n_roll(:bird) == """
+  test "song_paragraph with :bird" do
+    assert FoodChain.song_paragraph(:bird) == """
     I know an old lady who swallowed a bird.
     How absurd to swallow a bird!
     She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
@@ -33,4 +33,110 @@ defmodule FoodChainTest do
     I don't know why she swallowed the fly. Perhaps she'll die.
     """
   end
+  
+  test "song_paragraph with :cat" do
+    assert FoodChain.song_paragraph(:cat) == """
+    I know an old lady who swallowed a cat.
+    Imagine that, to swallow a cat!
+    She swallowed the cat to catch the bird.
+    She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+    """
+  end
+  
+  test "song_paragraph with :cow" do
+    assert FoodChain.song_paragraph(:cow) == """
+    I know an old lady who swallowed a cow.
+    I don't know how she swallowed a cow!
+    She swallowed the cow to catch the goat.
+    She swallowed the goat to catch the dog.
+    She swallowed the dog to catch the cat.
+    She swallowed the cat to catch the bird.
+    She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+    """
+  end
+  
+  test "song_paragraph with :horse" do
+    assert FoodChain.song_paragraph(:horse) == """
+    I know an old lady who swallowed a horse.
+    She's dead, of course!
+    """
+  end
+  
+  test "rock_n_roll" do
+    assert FoodChain.rock_n_roll == """
+    I know an old lady who swallowed a fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+
+    I know an old lady who swallowed a spider.
+    It wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+
+    I know an old lady who swallowed a bird.
+    How absurd to swallow a bird!
+    She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+
+    I know an old lady who swallowed a cat.
+    Imagine that, to swallow a cat!
+    She swallowed the cat to catch the bird.
+    She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+
+    I know an old lady who swallowed a dog.
+    What a hog, to swallow a dog!
+    She swallowed the dog to catch the cat.
+    She swallowed the cat to catch the bird.
+    She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+
+    I know an old lady who swallowed a goat.
+    Just opened her throat and swallowed a goat!
+    She swallowed the goat to catch the dog.
+    She swallowed the dog to catch the cat.
+    She swallowed the cat to catch the bird.
+    She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+
+    I know an old lady who swallowed a cow.
+    I don't know how she swallowed a cow!
+    She swallowed the cow to catch the goat.
+    She swallowed the goat to catch the dog.
+    She swallowed the dog to catch the cat.
+    She swallowed the cat to catch the bird.
+    She swallowed the bird to catch the spider that wriggled and jiggled and tickled inside her.
+    She swallowed the spider to catch the fly.
+    I don't know why she swallowed the fly. Perhaps she'll die.
+
+    I know an old lady who swallowed a horse.
+    She's dead, of course!
+    """
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
