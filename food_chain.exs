@@ -17,13 +17,20 @@ defmodule FoodChain do
   def rock_n_roll animal_name do
     current_animal_index = Enum.find_index @animals_and_sentences, fn({x, _}) -> x == animal_name end
     previous_animal_index = current_animal_index - 1
-    {:ok, {previous_animal, [previous_animal_first_sentence, previous_animal_second_sentence]}} = Enum.fetch(@animals_and_sentences, previous_animal_index)
+    {:ok, previous_animal} = Enum.fetch(@animals_and_sentences, previous_animal_index)
+    {:ok, {_, [first_animal_first_sentence, _]}} = Enum.fetch(@animals_and_sentences, 0)
     Enum.join([
       "I know an old lady who swallowed a #{animal_name}.",
       List.first(@animals_and_sentences[animal_name]),
-      "She swallowed the #{animal_name} to catch the #{previous_animal}#{previous_animal_second_sentence}",
-      previous_animal_first_sentence
-    ], "\n") <> "\n"
+      swallowed_sentence(animal_name, previous_animal),
+      first_animal_first_sentence
+      ],
+      "\n"
+    ) <> "\n"
+  end
+
+  def swallowed_sentence first_animal_name, {second_animal_name, [_, second_animal_second_sentence]} do
+    "She swallowed the #{first_animal_name} to catch the #{second_animal_name}#{second_animal_second_sentence}"
   end
 end
 
